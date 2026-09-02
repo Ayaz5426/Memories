@@ -15,7 +15,7 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: CLIENT_URL
-        value: https://memories-gallery.onrender.com
+        value: https://memories-ayaz.onrender.com,http://localhost:5176
     disk:
       name: memories-data
       mountPath: /opt/render/project/src/server/storage
