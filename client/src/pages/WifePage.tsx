@@ -43,8 +43,8 @@ const moods = [
 
 const eveningLooks = [
   { title: 'The little black dress', detail: 'Simple, confident, and impossible for me not to admire.', color: 'black' },
-  { title: 'The sunset dress', detail: 'Soft fabric, bare shoulders, and the color of our favorite hour.', color: 'rose' },
-  { title: 'The after-dinner look', detail: 'A short hem, your favorite perfume, and one more dance before bed.', color: 'gold' },
+  { title: 'The sunset dress', detail: 'Soft fabric and the warm color of our favorite hour.', color: 'rose' },
+  { title: 'The after-dinner look', detail: 'Your favorite perfume, a graceful silhouette, and one more dance before bed.', color: 'gold' },
 ];
 
 const romancePhotos = [
@@ -166,7 +166,7 @@ export default function WifePage() {
           </div>
         ) : (
           <div className="game-panel">
-            <p className="eyebrow">After dark, just us · {gameIndex + 1} of {gameQuestions.length}</p>
+            <p className="eyebrow">Just us · {gameIndex + 1} of {gameQuestions.length}</p>
             <h2>{gameQuestions[gameIndex].question}</h2>
             <div className="game-answers">
               {gameQuestions[gameIndex].answers.map((answer, index) => (
