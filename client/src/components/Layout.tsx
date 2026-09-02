@@ -33,6 +33,7 @@ export default function Layout() {
           </Link>
           <SiteNav>
             <Link to="/">Gallery</Link>
+            <Link to="/for-you">For you</Link>
             {isAuthenticated ? (
               <>
                 <Link to="/admin">Admin</Link>

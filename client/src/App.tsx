@@ -5,6 +5,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
 import Home from './pages/Home';
 import PlaceDetail from './pages/PlaceDetail';
+import WifePage from './pages/WifePage';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="for-you" element={<WifePage />} />
             <Route path="places/:id" element={<PlaceDetail />} />
             <Route path="admin/login" element={<AdminLogin />} />
             <Route path="admin" element={<AdminDashboard />} />
