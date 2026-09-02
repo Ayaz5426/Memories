@@ -185,9 +185,9 @@ export default function WifePage() {
 
       <section className="evening-edit">
         <div className="evening-edit-heading">
-          <p className="eyebrow">For our next date</p>
-          <h2>Your evening edit</h2>
-          <p>You look beautiful in everything, and especially in the things you choose just for us.</p>
+          <p className="eyebrow">For the next chapter of us</p>
+          <h2>Tonight, let me fall for you all over again.</h2>
+          <p>Wear whatever makes you feel beautiful, Sadiya. I will be waiting to admire you, hold your hand, and make one ordinary evening feel like our own little honeymoon.</p>
         </div>
         <div className="look-grid">
           {eveningLooks.map((look) => (
