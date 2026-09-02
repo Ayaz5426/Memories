@@ -51,6 +51,8 @@ const romancePhotos = [
   { image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85', alt: 'A couple walking together at sunset', label: 'Our kind of golden hour', quote: '“My favorite sunsets are the ones I get to share with you.”' },
   { image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=85', alt: 'A couple sharing a romantic moment', label: 'Just you and me', quote: '“In a crowded world, I would still find your hand first.”' },
   { image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85', alt: 'A woman in elegant honeymoon beachwear', label: 'Beautiful, as always', quote: '“You carry sunshine with you, Sadiya, wherever you go.”' },
+  { image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85', alt: 'A couple relaxing beside a tropical beach', label: 'Our little paradise', quote: '“Anywhere can feel like paradise when I am beside you.”' },
+  { image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=900&q=85', alt: 'A couple sharing a quiet beach moment', label: 'Closer to the sea', quote: '“I want a thousand quiet mornings with you.”' },
 ];
 
 export default function WifePage() {
@@ -83,12 +85,12 @@ export default function WifePage() {
       <Link to="/" className="back-link">← Back to our memories</Link>
 
       <section className="love-intro">
-        <p className="eyebrow">My heart belongs to you</p>
+        <p className="eyebrow">A private honeymoon letter for Sadiya Anam</p>
         <h1>Sadiya Anam,<br /><em>you are my forever.</em></h1>
         <p className="love-copy">
           I loved you yesterday, I love you more today, and I will keep finding new reasons to
           love you tomorrow. Every place becomes beautiful when your hand is in mine, and every
-          ordinary day feels like a gift because I get to spend it with you.
+          ordinary day feels like a gift because I get to spend it with you, Anam.
         </p>
         <p className="love-signature">You are my favorite hello and my hardest goodbye,<br /><strong>Forever yours</strong></p>
       </section>
@@ -204,7 +206,7 @@ export default function WifePage() {
 
       <section className="evening-edit">
         <div className="evening-edit-heading">
-          <p className="eyebrow">For the next chapter of us</p>
+          <p className="eyebrow">For Sadiya Anam · the next chapter of us</p>
           <h2>Tonight, let me fall for you all over again.</h2>
           <p>Wear whatever makes you feel beautiful, Sadiya. I will be waiting to admire you, hold your hand, and make one ordinary evening feel like our own little honeymoon.</p>
         </div>
