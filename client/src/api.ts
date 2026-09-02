@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 function authHeaders(): HeadersInit {
   const token = localStorage.getItem('memories_token');
@@ -70,5 +70,9 @@ export const api = {
 
 export function mediaUrl(path: string) {
   if (path.startsWith('http')) return path;
+  if (path.startsWith('/')) {
+    const apiOrigin = API_BASE.replace(/\/api\/?$/, '');
+    return `${apiOrigin}${path}`;
+  }
   return path;
 }
