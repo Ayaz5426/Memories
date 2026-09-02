@@ -176,3 +176,20 @@ button:hover { background: #e6b47d; color: #4b2934; }
 .admin-row, .admin-memory-row { border-color: #dfc5bb; background: #fff8ef; color: #4b2934; }
 .page-center { color: #8b6068; }
 .site-footer { color: #8b6068; }
+.hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; align-items: center; }
+.hero h1 em { color: #bd5b64; font-style: italic; }
+.hero-copy { position: relative; z-index: 1; }
+.hero-image { width: 100%; height: 300px; border: 6px solid #fff8ef; object-fit: cover; box-shadow: 10px 10px 0 #e6b47d; transform: rotate(2deg); }
+.evening-edit { max-width: 950px; margin: 5rem auto 0; padding: 2.5rem 0 0; border-top: 1px solid #e8c9c1; }
+.evening-edit-heading { max-width: 570px; }
+.evening-edit-heading h2 { margin: 0; color: #542c38; font-family: 'DM Serif Display', Georgia, serif; font-size: 2.5rem; font-weight: 400; }
+.evening-edit-heading p:last-child { color: #805d64; line-height: 1.7; }
+.look-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.look-card { min-height: 210px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #e8c9c1; background: #fff8ef; }
+.look-card > span { align-self: flex-start; margin-bottom: auto; color: #bd4f5c; font-size: 1.6rem; }
+.look-card h3 { margin: 0 0 0.4rem; color: #542c38; font-family: 'DM Serif Display', Georgia, serif; font-size: 1.45rem; font-weight: 400; }
+.look-card p { margin: 0; color: #805d64; font-size: 0.85rem; line-height: 1.5; }
+.look-rose { background: #f8e2dc; }
+.look-gold { background: #f8edd5; }
+@media (max-width: 768px) { .hero { grid-template-columns: 1fr; } .hero-image { height: 220px; } }
+@media (max-width: 700px) { .look-grid { grid-template-columns: 1fr; } }

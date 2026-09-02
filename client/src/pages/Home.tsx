@@ -30,12 +30,15 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <p className="eyebrow">The honeymoon journal</p>
-        <h1>Everywhere feels like paradise when we are together.</h1>
-        <p className="lead">
-          A private collection of the places, little surprises, and beautiful days that began with
-          us saying “I do.”
-        </p>
+        <div className="hero-copy">
+          <p className="eyebrow">Sadiya & Ayaz · our honeymoon journal</p>
+          <h1>Our love story,<br /><em>in every beautiful place.</em></h1>
+          <p className="lead">
+            Sunsets, slow mornings, dressed-up evenings, and all the little moments that feel like
+            ours. Welcome to the life we are collecting together.
+          </p>
+        </div>
+        <img className="hero-image" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85" alt="A couple walking together at sunset" />
         <div className="hero-stats" aria-label="Collection summary">
           <div><strong>{places.length}</strong><span>destinations</span></div>
           <div><strong>{memories.length}</strong><span>keepsakes</span></div>

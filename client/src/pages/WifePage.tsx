@@ -41,6 +41,12 @@ const moods = [
   { name: 'Closer', line: 'Phones away, music low, and the kind of quiet that only belongs to us.', prompt: 'Tonight, I want to hold you close and tell you everything I love about you.' },
 ];
 
+const eveningLooks = [
+  { title: 'The little black dress', detail: 'Simple, confident, and impossible for me not to admire.', color: 'black' },
+  { title: 'The sunset dress', detail: 'Soft fabric, bare shoulders, and the color of our favorite hour.', color: 'rose' },
+  { title: 'The after-dinner look', detail: 'A short hem, your favorite perfume, and one more dance before bed.', color: 'gold' },
+];
+
 export default function WifePage() {
   const [secretOpen, setSecretOpen] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -174,6 +180,23 @@ export default function WifePage() {
           <span className="mood-number">0{mood + 1}</span>
           <h3>{moods[mood].line}</h3>
           <p>{moods[mood].prompt}</p>
+        </div>
+      </section>
+
+      <section className="evening-edit">
+        <div className="evening-edit-heading">
+          <p className="eyebrow">For our next date</p>
+          <h2>Your evening edit</h2>
+          <p>You look beautiful in everything, and especially in the things you choose just for us.</p>
+        </div>
+        <div className="look-grid">
+          {eveningLooks.map((look) => (
+            <article className={`look-card look-${look.color}`} key={look.title}>
+              <span>♡</span>
+              <h3>{look.title}</h3>
+              <p>{look.detail}</p>
+            </article>
+          ))}
         </div>
       </section>
 
