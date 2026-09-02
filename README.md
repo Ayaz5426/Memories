@@ -104,6 +104,8 @@ Uploaded files are stored in `server/uploads/` and served at `/uploads/...`.
 3. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in the Render environment variables.
 4. Keep the persistent disk enabled because it stores the SQLite database and uploaded media.
 
+If Render reports `Cannot find module '/opt/render/project/src/server/dist/index.js'`, confirm the service is using the `new_changes` branch and the build command from `render.yaml`, then trigger a manual deploy with **Clear build cache & deploy**.
+
 ## License
 
 Private — for personal use.
