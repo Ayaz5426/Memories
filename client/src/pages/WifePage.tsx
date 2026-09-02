@@ -35,6 +35,12 @@ const dateIdeas = [
   'Book one beautiful night away and leave the rest of the world behind.',
 ];
 
+const moods = [
+  { name: 'Candlelight', line: 'Dim lights, dressed-up feelings, and a dinner that lasts all night.', prompt: 'Tonight, I want to hear the story behind your favorite smile.' },
+  { name: 'Midnight', line: 'A late drive, one shared playlist, and nowhere we need to be tomorrow.', prompt: 'Tonight, let us choose a road and leave the clock behind.' },
+  { name: 'Closer', line: 'Phones away, music low, and the kind of quiet that only belongs to us.', prompt: 'Tonight, I want to hold you close and tell you everything I love about you.' },
+];
+
 export default function WifePage() {
   const [secretOpen, setSecretOpen] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -45,6 +51,7 @@ export default function WifePage() {
   const [secretWord, setSecretWord] = useState('');
   const [wordUnlocked, setWordUnlocked] = useState(false);
   const [dateIdea, setDateIdea] = useState(0);
+  const [mood, setMood] = useState(0);
 
   function answerGame(answerIndex: number) {
     if (answerIndex === gameQuestions[gameIndex].correct) setScore((current) => current + 1);
@@ -150,6 +157,24 @@ export default function WifePage() {
           <p>{dateIdeas[dateIdea]}</p>
         </div>
         <button type="button" onClick={() => setDateIdea((current) => (current + 1) % dateIdeas.length)}>Another idea ↻</button>
+      </section>
+
+      <section className="after-hours">
+        <div className="after-hours-heading">
+          <p className="eyebrow">A private evening for two</p>
+          <h2>After hours, with you.</h2>
+          <p>Choose the feeling. I will bring the rest.</p>
+        </div>
+        <div className="mood-tabs" role="tablist" aria-label="Choose an evening mood">
+          {moods.map((item, index) => (
+            <button key={item.name} type="button" role="tab" aria-selected={mood === index} className={mood === index ? 'active' : ''} onClick={() => setMood(index)}>{item.name}</button>
+          ))}
+        </div>
+        <div className="mood-card" role="tabpanel">
+          <span className="mood-number">0{mood + 1}</span>
+          <h3>{moods[mood].line}</h3>
+          <p>{moods[mood].prompt}</p>
+        </div>
       </section>
 
       <section className="love-footer-note">

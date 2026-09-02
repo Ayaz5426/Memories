@@ -27,7 +27,7 @@ export default function Layout() {
               <BrandMark>♥</BrandMark>
               <span>
             <strong>Our Memories</strong>
-            <small>Marriage & places we visited</small>
+              <small>Our honeymoon journal</small>
               </span>
             </Brand>
           </Link>
@@ -48,7 +48,7 @@ export default function Layout() {
         </SiteHeader>
         <Main><Outlet /></Main>
         <SiteFooter>
-          <p>Made with love — your private collection of cherished moments.</p>
+          <p>Our little honeymoon journal, written in places and remembered in moments.</p>
         </SiteFooter>
       </AppShell>
     </ThemeProvider>

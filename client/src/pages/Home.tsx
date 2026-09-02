@@ -30,10 +30,11 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <p className="eyebrow">Welcome back</p>
-        <h1>Memories of our marriage & the places we've visited</h1>
+        <p className="eyebrow">The honeymoon journal</p>
+        <h1>Everywhere feels like paradise when we are together.</h1>
         <p className="lead">
-          A living album of photos and videos from the moments and destinations that matter most.
+          A private collection of the places, little surprises, and beautiful days that began with
+          us saying “I do.”
         </p>
         <div className="hero-stats" aria-label="Collection summary">
           <div><strong>{places.length}</strong><span>destinations</span></div>
