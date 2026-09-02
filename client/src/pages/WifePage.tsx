@@ -24,14 +24,14 @@ export default function WifePage() {
       <Link to="/" className="back-link">← Back to our memories</Link>
 
       <section className="love-intro">
-        <p className="eyebrow">A little note for you</p>
-        <h1>To my favorite person,<br /><em>in every place.</em></h1>
+        <p className="eyebrow">For Sadiya Anam</p>
+        <h1>To my favorite person,<br /><em>my forever home.</em></h1>
         <p className="love-copy">
-          Every journey is better because I get to take it with you. These are not just
-          photographs of places we have seen. They are proof of all the beautiful ordinary
-          moments that became extraordinary because you were there.
+          Every journey is better because I get to take it with you, Sadiya. These are not just
+          photographs of places we have seen. They are proof that the most beautiful destination
+          has always been the life we are building together.
         </p>
-        <p className="love-signature">Always choosing you,<br /><strong>Your husband</strong></p>
+        <p className="love-signature">In every lifetime, I would find you,<br /><strong>Your husband</strong></p>
       </section>
 
       <section className="love-gallery" aria-label="Our favorite moments">
@@ -41,9 +41,15 @@ export default function WifePage() {
         <div className="love-seal" aria-hidden="true">♥</div>
       </section>
 
+      <section className="quote-grid" aria-label="Love notes">
+        <blockquote>“You make the ordinary feel like a memory I will treasure forever.”</blockquote>
+        <blockquote>“I love the places we have been, but I love who we are together even more.”</blockquote>
+        <blockquote>“My favorite view is still the one beside you.”</blockquote>
+      </section>
+
       <section className="love-footer-note">
         <span>01</span>
-        <p>More adventures, more laughs, more us.</p>
+        <p>More adventures, more laughs, more us, Sadiya.</p>
         <Link to="/">Open our full gallery ↗</Link>
       </section>
     </div>
