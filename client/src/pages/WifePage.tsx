@@ -23,7 +23,7 @@ const moments = [
 ];
 
 const gameQuestions = [
-  { question: 'How should our perfect evening end?', answers: ['One more drink and a slow dance', 'Checking emails', 'Going home early'], correct: 0 },
+  { question: 'How should our perfect evening end?', answers: ['Dessert, soft music, and a slow dance', 'Checking emails', 'Going home early'], correct: 0 },
   { question: 'What will I always make time for?', answers: ['A perfect schedule', 'A quiet moment alone with you', 'Another work call'], correct: 1 },
   { question: 'What do I want more of in our life together?', answers: ['More reasons to celebrate us', 'More busy weekends', 'More time apart'], correct: 0 },
 ];
@@ -31,7 +31,7 @@ const gameQuestions = [
 const dateIdeas = [
   'Dress up for a candlelit dinner at home, phones away.',
   'Take a late-night drive, choose the music, and stop somewhere beautiful.',
-  'Make cocktails together, slow dance in the living room, and stay up talking.',
+  'Make dessert together, slow dance in the living room, and stay up talking.',
   'Book one beautiful night away and leave the rest of the world behind.',
 ];
 
