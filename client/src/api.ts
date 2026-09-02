@@ -66,6 +66,17 @@ export const api = {
       method: 'POST',
       body: formData,
     }),
+
+  createConfession: (message: string) =>
+    request<import('./types').Confession>('/confessions', {
+      method: 'POST',
+      body: JSON.stringify({ message }),
+    }),
+
+  getConfessions: () => request<import('./types').Confession[]>('/confessions'),
+
+  deleteConfession: (id: number) =>
+    request<void>(`/confessions/${id}`, { method: 'DELETE' }),
 };
 
 export function mediaUrl(path: string) {

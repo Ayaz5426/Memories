@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import placesRoutes from './routes/places.js';
 import memoriesRoutes from './routes/memories.js';
 import uploadRoutes from './routes/upload.js';
+import confessionRoutes from './routes/confessions.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -39,6 +40,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/places', placesRoutes);
 app.use('/api/memories', memoriesRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/confessions', confessionRoutes);
 
 const clientDist = path.join(__dirname, '../../client/dist');
 app.use(express.static(clientDist));

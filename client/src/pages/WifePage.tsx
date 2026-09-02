@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../api';
+import './WifePage.css';
 
 const moments = [
   {
@@ -222,10 +224,11 @@ export default function WifePage() {
     }
   }
 
-  function saveConfession(event: React.FormEvent) {
+  async function saveConfession(event: React.FormEvent) {
     event.preventDefault();
     if (!confession.trim()) return;
-    localStorage.setItem('wife-confession', confession);
+    await api.createConfession(confession);
+    setConfession('');
     setConfessionSaved(true);
   }
 

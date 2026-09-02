@@ -44,6 +44,12 @@ db.exec(`
     created_at TEXT DEFAULT (datetime('now')),
     FOREIGN KEY (place_id) REFERENCES places(id) ON DELETE SET NULL
   );
+
+  CREATE TABLE IF NOT EXISTS confessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    message TEXT NOT NULL,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
 `);
 
 export function seedAdmin(username: string, password: string) {
@@ -74,5 +80,11 @@ export interface Memory {
   file_url: string;
   caption: string | null;
   taken_at: string | null;
+  created_at: string;
+}
+
+export interface Confession {
+  id: number;
+  message: string;
   created_at: string;
 }
