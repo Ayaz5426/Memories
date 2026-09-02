@@ -8,7 +8,7 @@ import { requireAuth } from '../middleware/auth.js';
 
 const router = Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const uploadsDir = path.join(__dirname, '../../storage/uploads');
+const uploadsDir = path.join(__dirname, '../storage/uploads');
 
 fs.mkdirSync(uploadsDir, { recursive: true });
 
