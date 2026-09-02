@@ -23,6 +23,10 @@ export default function Home() {
   if (loading) return <div className="page-center">Loading memories...</div>;
   if (error) return <div className="page-center error">{error}</div>;
 
+  const latestYear = memories[0]?.taken_at
+    ? new Date(memories[0].taken_at).getFullYear()
+    : new Date().getFullYear();
+
   return (
     <div className="page">
       <section className="hero">
@@ -31,6 +35,11 @@ export default function Home() {
         <p className="lead">
           A living album of photos and videos from the moments and destinations that matter most.
         </p>
+        <div className="hero-stats" aria-label="Collection summary">
+          <div><strong>{places.length}</strong><span>destinations</span></div>
+          <div><strong>{memories.length}</strong><span>keepsakes</span></div>
+          <div><strong>{latestYear}</strong><span>most recent</span></div>
+        </div>
       </section>
 
       <section className="section">
