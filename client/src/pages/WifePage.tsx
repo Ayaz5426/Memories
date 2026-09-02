@@ -28,6 +28,13 @@ const gameQuestions = [
   { question: 'What do I want more of in our life together?', answers: ['More reasons to celebrate us', 'More busy weekends', 'More time apart'], correct: 0 },
 ];
 
+const dateIdeas = [
+  'Dress up for a candlelit dinner at home, phones away.',
+  'Take a late-night drive, choose the music, and stop somewhere beautiful.',
+  'Make cocktails together, slow dance in the living room, and stay up talking.',
+  'Book one beautiful night away and leave the rest of the world behind.',
+];
+
 export default function WifePage() {
   const [secretOpen, setSecretOpen] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -35,6 +42,9 @@ export default function WifePage() {
   const [gameIndex, setGameIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameFinished, setGameFinished] = useState(false);
+  const [secretWord, setSecretWord] = useState('');
+  const [wordUnlocked, setWordUnlocked] = useState(false);
+  const [dateIdea, setDateIdea] = useState(0);
 
   function answerGame(answerIndex: number) {
     if (answerIndex === gameQuestions[gameIndex].correct) setScore((current) => current + 1);
@@ -86,6 +96,22 @@ export default function WifePage() {
         </aside>
       )}
 
+      <section className="private-note">
+        <div>
+          <p className="eyebrow">Private little puzzle</p>
+          <h2>What word describes us best?</h2>
+          <p>Hint: it is what I promise you, in every season and every lifetime.</p>
+        </div>
+        {!wordUnlocked ? (
+          <form onSubmit={(event) => { event.preventDefault(); if (secretWord.trim().toLowerCase() === 'forever') setWordUnlocked(true); }}>
+            <input aria-label="Secret word" value={secretWord} onChange={(event) => setSecretWord(event.target.value)} placeholder="Type the secret word" />
+            <button type="submit">Unlock</button>
+          </form>
+        ) : (
+          <div className="unlocked-letter" role="status">You found it. My promise is forever, and my favorite future is the one with you.</div>
+        )}
+      </section>
+
       <section className="quote-grid" aria-label="Love notes">
         <blockquote>“Sadiya, you are the softest part of my life and the brightest part of every tomorrow.”</blockquote>
         <blockquote>“I would choose your hand, your laugh, and your heart in every version of this life.”</blockquote>
@@ -115,6 +141,15 @@ export default function WifePage() {
             </div>
           </div>
         )}
+      </section>
+
+      <section className="date-deck">
+        <div>
+          <p className="eyebrow">For our next night together</p>
+          <h2>Pick a little escape</h2>
+          <p>{dateIdeas[dateIdea]}</p>
+        </div>
+        <button type="button" onClick={() => setDateIdea((current) => (current + 1) % dateIdeas.length)}>Another idea ↻</button>
       </section>
 
       <section className="love-footer-note">
