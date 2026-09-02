@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+.love-page {
+  --love-bg: #10080b;
+  --love-surface: rgba(34, 17, 23, 0.78);
+  --love-text: #fff6f7;
+  --love-muted: #d9bfc6;
+  --love-accent: #e88a9d;
+  --love-accent-2: #f4b6c3;
+  --love-gold: #e7c78b;
+  --love-line: rgba(255, 255, 255, 0.12);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  color: var(--love-text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(196, 55, 93, 0.2), transparent 28rem),
+    radial-gradient(circle at 90% 35%, rgba(117, 35, 65, 0.18), transparent 30rem),
+    linear-gradient(135deg, #0c0709 0%, #170b10 48%, #090607 100%);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.love-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 1px, transparent 1px);
+  background-size: 85px 85px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.love-page > section,
+.love-page > aside,
+.love-page > .love-progress {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.love-page .back-link {
+  display: inline-flex;
+  margin: 26px max(20px, calc((100vw - 1180px) / 2));
+  color: var(--love-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.love-page .back-link:hover { color: white; transform: translateX(-3px); }
+
+.love-progress {
+  display: grid;
+  grid-template-columns: auto minmax(120px, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 10px 14px;
+  border: 1px solid var(--love-line);
+  border-radius: 999px;
+  background: rgba(20, 9, 13, 0.62);
+  backdrop-filter: blur(16px);
+  color: var(--love-muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.love-progress i { display: block; height: 5px; overflow: hidden; border-radius: 999px; background: rgba(255, 255, 255, 0.1); }
+.love-progress b { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #9e4058, #f4b6c3, #e7c78b); transition: width 0.5s ease; }
+
+.love-intro { min-height: 70vh; display: grid; place-content: center; padding: 80px 0 60px; text-align: center; }
+.love-page .eyebrow { color: var(--love-gold); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; font-weight: 700; }
+.love-intro h1, .love-page h2, .love-page h3 { font-family: 'Cormorant Garamond', Georgia, serif; }
+.love-intro h1 { max-width: 900px; margin: 18px auto; font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 0.82; font-weight: 500; }
+.love-intro h1 em { color: var(--love-accent-2); font-weight: 400; }
+.love-copy { max-width: 650px; margin: 25px auto; color: var(--love-muted); font-size: 1.08rem; line-height: 1.9; }
+.love-signature { color: #ead8dc; line-height: 1.8; }
+.love-signature strong { color: var(--love-accent-2); }
+
+.love-gallery { display: grid; grid-template-columns: 1.1fr 0.8fr 1.2fr; grid-template-rows: 300px 120px; gap: 12px; margin-bottom: 34px; }
+.love-photo-button, .romance-photo-button { position: relative; min-width: 0; padding: 0; overflow: hidden; border: 0; border-radius: 22px; background: #1b0c11; cursor: pointer; }
+.love-photo-button img, .romance-photo-button img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.5s ease; }
+.love-photo-button:hover img, .romance-photo-button:hover img { transform: scale(1.06); filter: saturate(1.08); }
+.love-photo-tall { grid-row: 1 / 3; }
+.love-photo-wide { grid-column: 3; }
+.photo-secret, .romance-quote { position: absolute; inset: auto 12px 12px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.13); border-radius: 14px; background: rgba(12,5,8,0.78); backdrop-filter: blur(12px); color: white; line-height: 1.5; }
+.love-seal { align-self: end; justify-self: center; grid-column: 2; grid-row: 2; width: 78px; height: 78px; border: 1px solid rgba(244,182,195,0.5); border-radius: 50%; background: radial-gradient(circle, #7f263f, #2a0d17); color: white; font-size: 2rem; cursor: pointer; box-shadow: 0 0 45px rgba(211,74,111,0.22); }
+.love-seal:hover { transform: scale(1.08) rotate(-4deg); }
+
+.secret-note, .private-note, .date-deck, .after-hours, .evening-edit, .reasons-section, .kiss-bank, .password-secret, .future-section, .adult-gate, .adult-room, .easter-egg, .final-secret, .couple-game { margin-top: 34px; padding: clamp(28px, 5vw, 58px); border: 1px solid var(--love-line); border-radius: 28px; background: linear-gradient(135deg, var(--love-surface), rgba(18,8,12,0.7)); backdrop-filter: blur(16px); box-shadow: 0 20px 80px rgba(0,0,0,0.2); }
+.secret-note { padding: 18px 22px; border-color: rgba(232,138,157,0.25); }
+.secret-note span { color: var(--love-gold); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; }
+.secret-note p { margin-bottom: 0; font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; }
+.love-page h2 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 0.95; font-weight: 500; }
+.love-page p { line-height: 1.7; }
+.private-note, .date-deck, .reasons-section { display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 30px; align-items: center; }
+.private-note p, .date-deck p, .reasons-section p { color: var(--love-muted); }
+.love-page form { display: flex; gap: 10px; }
+.love-page input, .love-page textarea { width: 100%; padding: 14px 16px; outline: none; border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; background: rgba(0,0,0,0.22); color: white; font: inherit; }
+.love-page input:focus, .love-page textarea:focus { border-color: var(--love-accent); box-shadow: 0 0 0 3px rgba(232,138,157,0.1); }
+.love-page button:not(.love-photo-button):not(.romance-photo-button) { padding: 13px 18px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: linear-gradient(135deg, #7c2944, #4c1629); color: white; cursor: pointer; font: inherit; transition: transform 0.2s ease, filter 0.2s ease; }
+.love-page button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.romance-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 50px auto; }
+.romance-strip figure { margin: 0; }
+.romance-photo-button { width: 100%; height: 280px; }
+.romance-strip figcaption { padding: 10px 4px; color: var(--love-muted); font-size: 0.82rem; }
+.quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 34px; }
+.quote-grid blockquote { margin: 0; padding: 30px; border-left: 2px solid var(--love-accent); background: rgba(255,255,255,0.025); color: #f2dfe4; font: 500 1.3rem/1.45 'Cormorant Garamond', serif; }
+.game-panel, .game-result, .kiss-bank, .after-hours-heading { text-align: center; }
+.game-answers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 25px; }
+.game-answers button { min-height: 70px; }
+.after-hours-heading { text-align: center; }
+.mood-tabs, .truth-dare-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 25px 0; }
+.mood-tabs button.active, .truth-dare-tabs button.active { background: #a53e5b; border-color: var(--love-accent); }
+.mood-card { max-width: 750px; margin: auto; padding: 42px 25px; border-radius: 22px; background: radial-gradient(circle at center, rgba(153,47,78,0.25), rgba(255,255,255,0.025)); text-align: center; }
+.mood-number { color: var(--love-gold); letter-spacing: 0.2em; }
+.kiss-counter { margin: 20px 0; color: var(--love-accent-2); text-shadow: 0 0 40px rgba(232,138,157,0.25); font: 500 clamp(4rem, 12vw, 8rem)/0.9 'Cormorant Garamond', serif; }
+.adult-gate { text-align: center; background: radial-gradient(circle at 50% 10%, rgba(171,42,78,0.35), transparent 30rem), linear-gradient(135deg, rgba(40,12,23,0.94), rgba(11,5,8,0.94)); }
+.adult-badge { display: inline-grid; place-items: center; width: 46px; height: 28px; border-radius: 8px; background: #9b294b; color: white; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
+.adult-consent { max-width: 820px; text-align: center; }
+.adult-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.adult-room { background: radial-gradient(circle at 85% 15%, rgba(185,43,83,0.18), transparent 22rem), linear-gradient(135deg, rgba(48,14,28,0.9), rgba(14,6,10,0.92)); }
+.adult-room-heading { text-align: center; }
+.challenge-card { max-width: 800px; margin: 30px auto; padding: 50px 30px; border: 1px solid rgba(232,138,157,0.2); border-radius: 25px; background: rgba(0,0,0,0.2); text-align: center; }
+.challenge-card > span { color: var(--love-gold); letter-spacing: 0.2em; font-size: 0.7rem; }
+.challenge-card h3 { margin: 18px 0 28px; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 500; }
+.flirt-meter { max-width: 800px; margin: 55px auto; text-align: center; }
+.flirt-labels { display: flex; justify-content: space-between; color: var(--love-muted); font-size: 0.8rem; }
+.flirt-meter input { width: 100%; accent-color: var(--love-accent); margin: 20px 0; }
+.fantasy-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.fantasy-grid button { min-height: 80px; }
+.confession-box { max-width: 800px; margin: 30px auto 0; padding-top: 30px; border-top: 1px solid var(--love-line); }
+.saved-confession { color: var(--love-accent-2) !important; }
+.password-secret { text-align: center; }
+.password-secret form { max-width: 600px; margin: 25px auto 0; }
+.future-section > .eyebrow, .future-section > h2 { text-align: center; }
+.future-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+.future-grid article { padding: 25px; border: 1px solid var(--love-line); border-radius: 20px; background: rgba(255,255,255,0.035); }
+.future-grid article > span { font-size: 2rem; }
+.future-grid h3 { margin: 12px 0 4px; font-size: 1.6rem; }
+.future-grid p { margin-bottom: 0; color: var(--love-muted); }
+.easter-egg { text-align: center; }
+.easter-egg > button { width: 75px; height: 75px; border-radius: 50%; font-size: 2rem; }
+.easter-reveal { margin-top: 20px; color: var(--love-accent-2); animation: reveal 0.5s ease both; }
+.final-secret { text-align: center; padding-block: 100px; background: radial-gradient(circle at 50% 40%, rgba(177,37,76,0.3), transparent 25rem), rgba(23,7,13,0.92); }
+.final-heart { color: #df6682; font-size: 5rem; animation: heartbeat 1.4s ease-in-out infinite; }
+.final-message { max-width: 700px; margin: 25px auto; color: #f3dfe5; font: 500 1.7rem/1.4 'Cormorant Garamond', serif; }
+
+@keyframes heartbeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.13); } 30% { transform: scale(1); } 45% { transform: scale(1.08); } }
+@keyframes reveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 900px) {
+  .love-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 180px; }
+  .love-photo-tall { grid-row: 1 / 3; }
+  .love-photo-wide { grid-column: auto; }
+  .love-seal { grid-column: 2; grid-row: 2; }
+  .romance-strip { grid-template-columns: 1fr 1fr; }
+  .fantasy-grid { grid-template-columns: repeat(3, 1fr); }
+  .future-grid { grid-template-columns: 1fr 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .love-page > section, .love-page > aside, .love-page > .love-progress { width: min(100% - 24px, 1180px); }
+  .love-page .back-link { margin: 18px 12px; }
+  .love-progress { grid-template-columns: 1fr; border-radius: 18px; }
+  .love-intro { min-height: 72vh; padding: 60px 0 30px; }
+  .love-intro h1 { font-size: clamp(3rem, 17vw, 5rem); }
+  .love-gallery { grid-template-columns: 1fr; grid-template-rows: 260px 210px 210px; }
+  .love-photo-tall { grid-row: auto; }
+  .love-photo-wide { grid-column: auto; }
+  .love-seal { position: absolute; width: 64px; height: 64px; margin-top: 240px; }
+  .romance-strip { grid-template-columns: 1fr; }
+  .romance-photo-button { height: 300px; }
+  .private-note, .date-deck, .reasons-section { grid-template-columns: 1fr; }
+  .game-answers { grid-template-columns: 1fr; }
+  .fantasy-grid { grid-template-columns: 1fr 1fr; }
+  .future-grid { grid-template-columns: 1fr; }
+  .love-page form { flex-direction: column; }
+  .love-page h2 { font-size: 2.4rem; }
+  .adult-room, .adult-gate, .final-secret { padding-inline: 20px; }
+  .love-footer-note { flex-wrap: wrap; }
+  .love-footer-note p { flex-basis: 100%; order: 2; }
+  .love-footer-note a { order: 3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}

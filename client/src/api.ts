@@ -66,6 +66,28 @@ export const api = {
       method: 'POST',
       body: formData,
     }),
+
+  createConfession: (message: string) =>
+    request<import('./types').Confession>('/confessions', {
+      method: 'POST',
+      body: JSON.stringify({ message }),
+    }),
+
+  getConfessions: () => request<import('./types').Confession[]>('/confessions'),
+
+  deleteConfession: (id: number) =>
+    request<void>(`/confessions/${id}`, { method: 'DELETE' }),
+
+  recordInteraction: (event_type: string, event_value?: string | number) =>
+    request<import('./types').InteractionEvent>('/interactions', {
+      method: 'POST',
+      body: JSON.stringify({ event_type, event_value }),
+    }),
+
+  getInteractions: () => request<import('./types').InteractionEvent[]>('/interactions'),
+
+  deleteInteraction: (id: number) =>
+    request<void>(`/interactions/${id}`, { method: 'DELETE' }),
 };
 
 export function mediaUrl(path: string) {

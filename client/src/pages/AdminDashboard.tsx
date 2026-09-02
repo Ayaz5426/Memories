@@ -2,12 +2,14 @@ import { type FormEvent, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { api, mediaUrl } from '../api';
 import { useAuth } from '../context/AuthContext';
-import type { Memory, Place } from '../types';
+import type { Confession, InteractionEvent, Memory, Place } from '../types';
 
 export default function AdminDashboard() {
   const { isAuthenticated } = useAuth();
   const [places, setPlaces] = useState<Place[]>([]);
   const [memories, setMemories] = useState<Memory[]>([]);
+  const [confessions, setConfessions] = useState<Confession[]>([]);
+  const [interactions, setInteractions] = useState<InteractionEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -29,9 +31,13 @@ export default function AdminDashboard() {
   });
 
   async function refresh() {
-    const [placesData, memoriesData] = await Promise.all([api.getPlaces(), api.getMemories()]);
+    const [placesData, memoriesData, confessionsData, interactionsData] = await Promise.all([
+      api.getPlaces(), api.getMemories(), api.getConfessions(), api.getInteractions(),
+    ]);
     setPlaces(placesData);
     setMemories(memoriesData);
+    setConfessions(confessionsData);
+    setInteractions(interactionsData);
   }
 
   useEffect(() => {
@@ -108,6 +114,26 @@ export default function AdminDashboard() {
       await api.deleteMemory(id);
       setMessage('Memory deleted.');
       await refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Delete failed');
+    }
+  }
+
+  async function handleDeleteConfession(id: number) {
+    if (!confirm('Delete this private message?')) return;
+    try {
+      await api.deleteConfession(id);
+      setMessage('Private message deleted.');
+      await refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Delete failed');
+    }
+  }
+
+  async function handleDeleteInteraction(id: number) {
+    try {
+      await api.deleteInteraction(id);
+      setInteractions((items) => items.filter((item) => item.id !== id));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Delete failed');
     }
@@ -241,6 +267,46 @@ export default function AdminDashboard() {
               <button type="button" className="danger" onClick={() => handleDeletePlace(place.id)}>
                 Delete
               </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section-header">
+          <h2>Wife page activity</h2>
+          <p className="muted">{interactions.length} events</p>
+        </div>
+        <div className="admin-list">
+          {interactions.length === 0 ? (
+            <div className="empty-state"><p>No interactions recorded yet.</p></div>
+          ) : interactions.map((item) => (
+            <div key={item.id} className="admin-row interaction-row">
+              <div>
+                <strong>{item.event_type.replaceAll('_', ' ')}</strong>
+                {item.event_value && <p>{item.event_value}</p>}
+                <small className="muted">{new Date(item.created_at).toLocaleString()}</small>
+              </div>
+              <button type="button" className="danger" onClick={() => handleDeleteInteraction(item.id)}>Delete</button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section-header">
+          <h2>Private confessions</h2>
+        </div>
+        <div className="admin-list">
+          {confessions.length === 0 ? (
+            <div className="empty-state"><p>No private messages yet.</p></div>
+          ) : confessions.map((item) => (
+            <div key={item.id} className="admin-row">
+              <div>
+                <strong>{item.message}</strong>
+                <p className="muted">{new Date(item.created_at).toLocaleString()}</p>
+              </div>
+              <button type="button" className="danger" onClick={() => handleDeleteConfession(item.id)}>Delete</button>
             </div>
           ))}
         </div>

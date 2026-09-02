@@ -20,3 +20,16 @@ export interface Memory {
   created_at: string;
   place_name?: string;
 }
+
+export interface Confession {
+  id: number;
+  message: string;
+  created_at: string;
+}
+
+export interface InteractionEvent {
+  id: number;
+  event_type: string;
+  event_value: string | null;
+  created_at: string;
+}
