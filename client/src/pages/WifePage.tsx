@@ -24,14 +24,14 @@ export default function WifePage() {
       <Link to="/" className="back-link">← Back to our memories</Link>
 
       <section className="love-intro">
-        <p className="eyebrow">For Sadiya Anam</p>
-        <h1>To my favorite person,<br /><em>my forever home.</em></h1>
+        <p className="eyebrow">My heart belongs to you</p>
+        <h1>Sadiya Anam,<br /><em>you are my forever.</em></h1>
         <p className="love-copy">
-          Every journey is better because I get to take it with you, Sadiya. These are not just
-          photographs of places we have seen. They are proof that the most beautiful destination
-          has always been the life we are building together.
+          I loved you yesterday, I love you more today, and I will keep finding new reasons to
+          love you tomorrow. Every place becomes beautiful when your hand is in mine, and every
+          ordinary day feels like a gift because I get to spend it with you.
         </p>
-        <p className="love-signature">In every lifetime, I would find you,<br /><strong>Your husband</strong></p>
+        <p className="love-signature">You are my favorite hello and my hardest goodbye,<br /><strong>Forever yours</strong></p>
       </section>
 
       <section className="love-gallery" aria-label="Our favorite moments">
@@ -42,14 +42,14 @@ export default function WifePage() {
       </section>
 
       <section className="quote-grid" aria-label="Love notes">
-        <blockquote>“You make the ordinary feel like a memory I will treasure forever.”</blockquote>
-        <blockquote>“I love the places we have been, but I love who we are together even more.”</blockquote>
-        <blockquote>“My favorite view is still the one beside you.”</blockquote>
+        <blockquote>“Sadiya, you are the softest part of my life and the brightest part of every tomorrow.”</blockquote>
+        <blockquote>“I would choose your hand, your laugh, and your heart in every version of this life.”</blockquote>
+        <blockquote>“My favorite place will always be wherever you are.”</blockquote>
       </section>
 
       <section className="love-footer-note">
         <span>01</span>
-        <p>More adventures, more laughs, more us, Sadiya.</p>
+        <p>One heart. One life. All my love, Sadiya.</p>
         <Link to="/">Open our full gallery ↗</Link>
       </section>
     </div>

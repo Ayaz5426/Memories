@@ -76,8 +76,8 @@ button.danger { background: #a44f4f; }
 .love-intro { max-width: 700px; margin: 2rem auto 3rem; text-align: center; }
 .love-intro h1 { margin: 0; font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(3rem, 8vw, 6.8rem); font-weight: 400; line-height: 0.94; letter-spacing: -0.02em; }
 .love-intro h1 em { color: #f0b35c; font-style: italic; }
-.love-copy { max-width: 540px; margin: 2rem auto 0; color: #c2d2cd; font-size: 1rem; line-height: 1.8; }
-.love-signature { margin: 2rem 0 0; color: #a9c1bc; font-family: 'DM Serif Display', Georgia, serif; font-size: 1.15rem; line-height: 1.25; }
+.love-copy { max-width: 570px; margin: 2rem auto 0; color: #d7e2dc; font-size: 1.05rem; line-height: 1.9; }
+.love-signature { margin: 2.25rem 0 0; color: #f0b35c; font-family: 'DM Serif Display', Georgia, serif; font-size: 1.25rem; line-height: 1.25; }
 .love-signature strong { color: #f6f0e5; font-weight: 400; }
 .love-gallery { position: relative; display: grid; grid-template-columns: 1.1fr 0.8fr 1fr; gap: 1rem; max-width: 950px; margin: 0 auto; padding: 1rem 0 2rem; }
 .love-photo { width: 100%; height: 260px; border: 3px solid #f6f0e5; border-radius: 0.2rem; object-fit: cover; transform: rotate(2deg); box-shadow: 8px 8px 0 #e36f55; }
