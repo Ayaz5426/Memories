@@ -25,7 +25,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../../storage/uploads')));
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });

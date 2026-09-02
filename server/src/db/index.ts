@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataDir = path.join(__dirname, '../../data');
+const dataDir = path.join(__dirname, '../../storage/data');
 const dbPath = path.join(dataDir, 'memories.db');
 
 if (!fs.existsSync(dataDir)) {

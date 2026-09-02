@@ -18,5 +18,5 @@ services:
         value: https://memories-gallery.onrender.com
     disk:
       name: memories-data
-      mountPath: /opt/render/project/src/server/data
+      mountPath: /opt/render/project/src/server/storage
       sizeGB: 1

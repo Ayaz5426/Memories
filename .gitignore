@@ -3,9 +3,8 @@ dist/
 build/
 .env
 .env.local
-server/data/*
-!server/data/.gitkeep
-server/uploads/*
-!server/uploads/.gitkeep
+server/storage/*
+!server/storage/data/.gitkeep
+!server/storage/uploads/.gitkeep
 *.log
 .DS_Store
