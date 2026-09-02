@@ -6,19 +6,19 @@ const moments = [
     image: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=85',
     alt: 'A sunlit coastal view',
     className: 'love-photo love-photo-tall',
-    secret: 'Even the sea feels quieter when I am looking at it with you.',
+    secret: '“Even the sea feels quieter when I am looking at it with you.”',
   },
   {
     image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=85',
     alt: 'A quiet garden path',
     className: 'love-photo',
-    secret: 'My favorite part of every adventure is the moment you smile.',
+    secret: '“My favorite part of every adventure is the moment you smile.”',
   },
   {
     image: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=900&q=85',
     alt: 'A colorful city street',
     className: 'love-photo love-photo-wide',
-    secret: 'I would happily get lost with you again and again.',
+    secret: '“I would happily get lost with you again and again.”',
   },
 ];
 
@@ -48,14 +48,15 @@ const eveningLooks = [
 ];
 
 const romancePhotos = [
-  { image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85', alt: 'A couple walking together at sunset', label: 'Our kind of golden hour' },
-  { image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=85', alt: 'A couple sharing a romantic moment', label: 'Just you and me' },
-  { image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85', alt: 'A woman in an elegant short evening dress', label: 'Beautiful, as always' },
+  { image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85', alt: 'A couple walking together at sunset', label: 'Our kind of golden hour', quote: '“My favorite sunsets are the ones I get to share with you.”' },
+  { image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=85', alt: 'A couple sharing a romantic moment', label: 'Just you and me', quote: '“In a crowded world, I would still find your hand first.”' },
+  { image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85', alt: 'A woman in elegant honeymoon beachwear', label: 'Beautiful, as always', quote: '“You carry sunshine with you, Sadiya, wherever you go.”' },
 ];
 
 export default function WifePage() {
   const [secretOpen, setSecretOpen] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
+  const [selectedRomance, setSelectedRomance] = useState<number | null>(null);
   const [gameOpen, setGameOpen] = useState(false);
   const [gameIndex, setGameIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -99,7 +100,7 @@ export default function WifePage() {
             type="button"
             className={`${moment.className} love-photo-button`}
             onClick={() => setSelectedPhoto(selectedPhoto === index ? null : index)}
-            aria-label={`Reveal a secret about this memory: ${moment.alt}`}
+            aria-label={`Reveal a romantic quote: ${moment.alt}`}
           >
             <img src={moment.image} alt={moment.alt} />
             {selectedPhoto === index && <span className="photo-secret">{moment.secret}</span>}
@@ -111,7 +112,10 @@ export default function WifePage() {
       <section className="romance-strip" aria-label="Romantic honeymoon inspiration">
         {romancePhotos.map((photo) => (
           <figure key={photo.image}>
-            <img src={photo.image} alt={photo.alt} loading="lazy" />
+            <button type="button" className="romance-photo-button" onClick={() => setSelectedRomance(selectedRomance === romancePhotos.indexOf(photo) ? null : romancePhotos.indexOf(photo))} aria-label={`Reveal a quote: ${photo.label}`}>
+              <img src={photo.image} alt={photo.alt} loading="lazy" />
+              {selectedRomance === romancePhotos.indexOf(photo) && <span className="romance-quote">{photo.quote}</span>}
+            </button>
             <figcaption>{photo.label}</figcaption>
           </figure>
         ))}
