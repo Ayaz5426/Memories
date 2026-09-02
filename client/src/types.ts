@@ -26,3 +26,10 @@ export interface Confession {
   message: string;
   created_at: string;
 }
+
+export interface InteractionEvent {
+  id: number;
+  event_type: string;
+  event_value: string | null;
+  created_at: string;
+}

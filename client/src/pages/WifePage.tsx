@@ -143,6 +143,10 @@ export default function WifePage() {
   const [easterEggClicks, setEasterEggClicks] = useState(0);
   const [finalUnlocked, setFinalUnlocked] = useState(initialUnlocked >= 100);
 
+  function track(eventType: string, eventValue?: string | number) {
+    void api.recordInteraction(eventType, eventValue).catch(() => undefined);
+  }
+
   const progress = useMemo(() => {
     const values = [
       selectedPhoto !== null,
@@ -169,6 +173,7 @@ export default function WifePage() {
     event.preventDefault();
     const answer = puzzleInput.trim().toLowerCase();
     if (answer === puzzleQuestions[puzzleIndex].answer) {
+      track('puzzle_solved', `${puzzleIndex + 1}: ${puzzleQuestions[puzzleIndex].question}`);
       setPuzzleMessage('Correct. You found another piece of my heart. ❤️');
       if (puzzleIndex === puzzleQuestions.length - 1) {
         setPuzzleUnlocked(true);
@@ -177,12 +182,14 @@ export default function WifePage() {
       }
       setPuzzleInput('');
     } else {
+      track('puzzle_attempt_failed', `${puzzleIndex + 1}: ${answer || '(empty)'}`);
       setPuzzleMessage('Not quite... think about us again. 😏');
     }
   }
 
   function answerGame(index: number) {
     const correct = index === chemistryQuestions[gameIndex].correct;
+    track('chemistry_answer', `${chemistryQuestions[gameIndex].question} -> ${chemistryQuestions[gameIndex].answers[index]} (${correct ? 'correct' : 'wrong'})`);
     if (correct) setScore((s) => s + 1);
     if (gameIndex === chemistryQuestions.length - 1) setGameFinished(true);
     else setGameIndex((i) => i + 1);
@@ -196,16 +203,23 @@ export default function WifePage() {
 
   function randomChallenge(mode = adultMode) {
     const list = mode === 'truth' ? truthChallenges : dareChallenges;
-    setChallenge(list[Math.floor(Math.random() * list.length)]);
+    const nextChallenge = list[Math.floor(Math.random() * list.length)];
+    setChallenge(nextChallenge);
+    track(`${mode}_challenge_selected`, nextChallenge);
   }
 
   function changeAdultMode(mode: 'truth' | 'dare') {
     setAdultMode(mode);
+    track('adult_mode_selected', mode);
     randomChallenge(mode);
   }
 
   function handleKiss() {
-    setKissCount((count) => count + 1);
+    setKissCount((count) => {
+      const nextCount = count + 1;
+      track('kiss_claimed', nextCount);
+      return nextCount;
+    });
   }
 
   function flirtMessage() {
@@ -219,15 +233,18 @@ export default function WifePage() {
   function unlockPassword(event: React.FormEvent) {
     event.preventDefault();
     if (secretPassword.trim().toLowerCase() === 'sadiya') {
+      track('secret_password_unlocked');
       setPasswordUnlocked(true);
       setFinalUnlocked(true);
     }
+    else track('secret_password_failed');
   }
 
   async function saveConfession(event: React.FormEvent) {
     event.preventDefault();
     if (!confession.trim()) return;
     await api.createConfession(confession);
+    track('confession_submitted', 'Private confession submitted');
     setConfession('');
     setConfessionSaved(true);
   }
@@ -261,7 +278,10 @@ export default function WifePage() {
             key={moment.image}
             type="button"
             className={`${moment.className} love-photo-button`}
-            onClick={() => setSelectedPhoto(selectedPhoto === index ? null : index)}
+            onClick={() => {
+              setSelectedPhoto(selectedPhoto === index ? null : index);
+              track('memory_image_clicked', moment.alt);
+            }}
           >
             <img src={moment.image} alt={moment.alt} />
             {selectedPhoto === index && <span className="photo-secret">{moment.secret}</span>}
@@ -273,6 +293,7 @@ export default function WifePage() {
           onClick={() => {
             setSecretOpen((open) => !open);
             setEasterEggClicks((c) => c + 1);
+            track('heart_secret_clicked');
           }}
           aria-label="Reveal secret"
         >
@@ -293,7 +314,10 @@ export default function WifePage() {
             <button
               type="button"
               className="romance-photo-button"
-              onClick={() => setSelectedRomance(selectedRomance === index ? null : index)}
+              onClick={() => {
+                setSelectedRomance(selectedRomance === index ? null : index);
+                track('romance_image_clicked', photo.label);
+              }}
             >
               <img src={photo.image} alt={photo.alt} loading="lazy" />
               {selectedRomance === index && <span className="romance-quote">{photo.quote}</span>}
@@ -343,7 +367,11 @@ export default function WifePage() {
         </div>
         <button
           type="button"
-          onClick={() => setReasonIndex((i) => (i + 1) % reasons.length)}
+          onClick={() => {
+            const nextReason = (reasonIndex + 1) % reasons.length;
+            setReasonIndex(nextReason);
+            track('reason_revealed', reasons[nextReason]);
+          }}
         >
           Another reason ❤️
         </button>
@@ -354,7 +382,7 @@ export default function WifePage() {
           <button
             type="button"
             className="game-launch"
-            onClick={() => { setGameOpen(true); resetGame(); }}
+            onClick={() => { setGameOpen(true); resetGame(); track('chemistry_game_started'); }}
           >
             Play our little love game <span>♥</span>
           </button>
@@ -386,7 +414,11 @@ export default function WifePage() {
           <h2>Pick a little escape</h2>
           <p>{dateIdeas[dateIdea]}</p>
         </div>
-        <button type="button" onClick={() => setDateIdea((i) => (i + 1) % dateIdeas.length)}>
+        <button type="button" onClick={() => {
+          const nextIdea = (dateIdea + 1) % dateIdeas.length;
+          setDateIdea(nextIdea);
+          track('date_idea_selected', dateIdeas[nextIdea]);
+        }}>
           Another idea ↻
         </button>
       </section>
@@ -405,7 +437,10 @@ export default function WifePage() {
               role="tab"
               aria-selected={mood === index}
               className={mood === index ? 'active' : ''}
-              onClick={() => setMood(index)}
+              onClick={() => {
+                setMood(index);
+                track('mood_selected', item.name);
+              }}
             >
               {item.name}
             </button>
@@ -436,7 +471,7 @@ export default function WifePage() {
           <p className="eyebrow">Private · 18+ · Just us</p>
           <h2>FOR YOUR EYES ONLY 🔥</h2>
           <p>This room is private, playful, flirty and a little naughty.</p>
-          <button type="button" onClick={() => setAdultOpen(true)}>
+          <button type="button" onClick={() => { setAdultOpen(true); track('private_room_opened'); }}>
             Enter our secret room 😈
           </button>
         </section>
@@ -449,10 +484,10 @@ export default function WifePage() {
             we skip it. No pressure. No judgment. Just us. ❤️
           </p>
           <div className="adult-actions">
-            <button type="button" onClick={() => { setAdultConsent(true); randomChallenge(); }}>
+            <button type="button" onClick={() => { setAdultConsent(true); track('private_room_consent', 'play'); randomChallenge(); }}>
               Let's play 😈
             </button>
-            <button type="button" onClick={() => setAdultOpen(false)}>
+            <button type="button" onClick={() => { setAdultOpen(false); track('private_room_consent', 'keep_sweet'); }}>
               Keep it sweet ❤️
             </button>
           </div>
@@ -467,10 +502,10 @@ export default function WifePage() {
           </div>
 
           <div className="truth-dare-tabs">
-            <button className={adultMode === 'truth' ? 'active' : ''} onClick={() => changeAdultMode('truth')}>
+            <button type="button" className={adultMode === 'truth' ? 'active' : ''} onClick={() => changeAdultMode('truth')}>
               Truth 🔥
             </button>
-            <button className={adultMode === 'dare' ? 'active' : ''} onClick={() => changeAdultMode('dare')}>
+            <button type="button" className={adultMode === 'dare' ? 'active' : ''} onClick={() => changeAdultMode('dare')}>
               Dare 😈
             </button>
           </div>
@@ -486,13 +521,17 @@ export default function WifePage() {
           <div className="flirt-meter">
             <p className="eyebrow">How badly do you want me?</p>
             <div className="flirt-labels"><span>Innocent 😇</span><span>Can't resist me 😈</span></div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={flirtLevel}
-              onChange={(e) => setFlirtLevel(Number(e.target.value))}
-            />
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={flirtLevel}
+                onChange={(e) => {
+                  const nextLevel = Number(e.target.value);
+                  setFlirtLevel(nextLevel);
+                  track('flirt_level_changed', nextLevel);
+                }}
+              />
             <h3>{flirtMessage()}</h3>
           </div>
 
@@ -500,7 +539,9 @@ export default function WifePage() {
             {['🌙 Slow & Romantic', '🔥 Passionate', '😈 Naughty', '💋 Tease Me', '🖤 Your Choice'].map((item) => (
               <button key={item} type="button" onClick={() => {
                 setAdultMode('dare');
-                setChallenge(item.replace(/^.{2}\s/, '') + ': choose something fun, intimate and consensual for tonight. 😏');
+                  const selectedFantasy = item.replace(/^.{2}\s/, '');
+                  setChallenge(selectedFantasy + ': choose something fun, intimate and consensual for tonight. 😏');
+                  track('fantasy_selected', selectedFantasy);
               }}>
                 {item}
               </button>

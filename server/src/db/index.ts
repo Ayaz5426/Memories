@@ -50,6 +50,13 @@ db.exec(`
     message TEXT NOT NULL,
     created_at TEXT DEFAULT (datetime('now'))
   );
+
+  CREATE TABLE IF NOT EXISTS interaction_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_type TEXT NOT NULL,
+    event_value TEXT,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
 `);
 
 export function seedAdmin(username: string, password: string) {
@@ -86,5 +93,12 @@ export interface Memory {
 export interface Confession {
   id: number;
   message: string;
+  created_at: string;
+}
+
+export interface InteractionEvent {
+  id: number;
+  event_type: string;
+  event_value: string | null;
   created_at: string;
 }
