@@ -47,6 +47,12 @@ const eveningLooks = [
   { title: 'The after-dinner look', detail: 'A short hem, your favorite perfume, and one more dance before bed.', color: 'gold' },
 ];
 
+const romancePhotos = [
+  { image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85', alt: 'A couple walking together at sunset', label: 'Our kind of golden hour' },
+  { image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=85', alt: 'A couple sharing a romantic moment', label: 'Just you and me' },
+  { image: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85', alt: 'A woman in an elegant short evening dress', label: 'Beautiful, as always' },
+];
+
 export default function WifePage() {
   const [secretOpen, setSecretOpen] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -100,6 +106,15 @@ export default function WifePage() {
           </button>
         ))}
         <button type="button" className="love-seal" onClick={() => setSecretOpen((open) => !open)} aria-label="Reveal a secret love message">♥</button>
+      </section>
+
+      <section className="romance-strip" aria-label="Romantic honeymoon inspiration">
+        {romancePhotos.map((photo) => (
+          <figure key={photo.image}>
+            <img src={photo.image} alt={photo.alt} loading="lazy" />
+            <figcaption>{photo.label}</figcaption>
+          </figure>
+        ))}
       </section>
 
       {secretOpen && (
