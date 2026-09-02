@@ -19,6 +19,7 @@ export default function AdminDashboard() {
     visited_date: '',
     cover_image: '',
   });
+  const [coverFile, setCoverFile] = useState<File | null>(null);
 
   const [uploadForm, setUploadForm] = useState({
     place_id: '',
@@ -47,8 +48,17 @@ export default function AdminDashboard() {
     setMessage('');
     setError('');
     try {
-      await api.createPlace(placeForm);
+      const place = await api.createPlace({ ...placeForm, cover_image: '' });
+      if (coverFile) {
+        const formData = new FormData();
+        formData.append('file', coverFile);
+        formData.append('place_id', String(place.id));
+        formData.append('caption', `${place.name} cover image`);
+        const uploaded = await api.uploadMemory(formData);
+        await api.updatePlace(place.id, { cover_image: uploaded.file_url });
+      }
       setPlaceForm({ name: '', location: '', description: '', visited_date: '', cover_image: '' });
+      setCoverFile(null);
       setMessage('Place created.');
       await refresh();
     } catch (err) {
@@ -155,6 +165,14 @@ export default function AdminDashboard() {
                 value={placeForm.cover_image}
                 onChange={(e) => setPlaceForm({ ...placeForm, cover_image: e.target.value })}
                 placeholder="/uploads/your-image.jpg"
+              />
+            </label>
+            <label>
+              Or upload a cover image
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setCoverFile(e.target.files?.[0] ?? null)}
               />
             </label>
             <button type="submit">Create place</button>
