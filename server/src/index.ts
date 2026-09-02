@@ -36,6 +36,12 @@ app.use('/api/places', placesRoutes);
 app.use('/api/memories', memoriesRoutes);
 app.use('/api/upload', uploadRoutes);
 
+const clientDist = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientDist));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(clientDist, 'index.html'));
+});
+
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   if (err.message === 'Only image and video files are allowed') {
     res.status(400).json({ error: err.message });

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: memories-gallery
+    runtime: node
+    buildCommand: npm ci --prefix client && npm run build --prefix client && npm ci --prefix server && npm run build --prefix server
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: CLIENT_URL
+        value: https://memories-gallery.onrender.com
+    disk:
+      name: memories-data
+      mountPath: /opt/render/project/src/server/data
+      sizeGB: 1

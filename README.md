@@ -97,6 +97,13 @@ Uploaded files are stored in `server/uploads/` and served at `/uploads/...`.
 - Consider cloud storage (S3, Cloudinary) for media in production
 - Build the client with `cd client && npm run build` and serve static files from Express if needed
 
+## Deploy on Render
+
+1. Push the repository to GitHub and create a new Render Blueprint from it.
+2. Render will detect `render.yaml` and create the web service.
+3. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in the Render environment variables.
+4. Keep the persistent disk enabled because it stores the SQLite database and uploaded media.
+
 ## License
 
 Private — for personal use.
